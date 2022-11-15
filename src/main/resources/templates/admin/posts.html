@@ -1,10 +1,21 @@
 <div th:replace="admin/header"></div>
+<!--
+you can use th:replace or th:insert
+th:replace is used to replace the current tag (in this code is the div) with the fragment
+ (html code) from the admin/header template
+th:insert will insert the fragment inside the current tag
+
+th:replace (or insert) = "html template path" will get the entire html code in the file
+or
+th:replace (or insert) = "html template path :: fragment name" will get the
+ fragment with the provided name
+-->
 
 <div th:replace="admin/navbar"></div>
 
 <div class="container">
     <div class="row">
-        <h1>List Blog Posts</h1>
+        <h1>List Posts</h1>
     </div>
     <table class="table table-striped table-hover table-bordered">
         <thead class="table-dark">
@@ -20,7 +31,7 @@
             <td th:text="${post.title}">title</td>
             <td th:text="${post.shortDesc}">shortDesc</td>
             <td th:text="${post.createdOn}">createdOn</td>
-            <td th:text="${}"></td>
+            <td></td> <!--here will be the actions edit/delete buttons-->
         </tr>
         </tbody>
     </table>
