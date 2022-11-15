@@ -22,7 +22,14 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<PostDto> findAllPosts() {
         List<Post> posts = postRepo.findAll();
+        /*
+        converting from List of Post to List of PostDto using Lambda Expression.
+        posts.stream().map(
+            (post) -> PostMapper.mapToPostDto(post)
+        ).collect(Collectors.toList());
+        */
         return posts.stream().map(
+                // here using Method Reference
                 PostMapper::mapToPostDto
         ).collect(Collectors.toList());
     }
