@@ -46,7 +46,7 @@ public class PostController {
                              BindingResult bindingResult,
                              Model model
     ) {
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             model.addAttribute("postDto", postDto);
             return "admin/new-post";
         }
@@ -61,6 +61,20 @@ public class PostController {
         PostDto postDto = postService.findPostById(postId);
         model.addAttribute("post", postDto);
         return "admin/edit-post";
+    }
+
+    @PostMapping("/admin/posts/{postId}")
+    public String updatePost(@PathVariable Long postId,
+                             @Valid @ModelAttribute("post") PostDto post,
+                             BindingResult result,
+                             Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("post", post);
+            return "admin/edit-post";
+        }
+        post.setId(postId);
+        postService.updatePost(post);
+        return "redirect:/admin/posts";
     }
 
     private static String getUrl(String postTitle) {
