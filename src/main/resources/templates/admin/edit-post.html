@@ -1,0 +1,83 @@
+<div th:replace="admin/header"></div>
+
+<div th:replace="admin/navbar"></div>
+
+<br>
+
+<div class="container">
+  <div class="row col-md-8 offset-md-2">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="text-center">Edit Post</h2>
+      </div>
+      <div class="card-body">
+        <form th:action="@{/admin/posts}" th:object="${post}" role="form" method="post">
+          <input type="hidden" th:field="*{id}">
+          <input type="hidden" th:field="*{url}">
+          <input type="hidden" th:field="*{createdOn}">
+          <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text"
+                   class="form-control"
+                   id="title"
+                   placeholder="Post Title..."
+                   name="title"
+                   th:field="*{title}"
+            >
+            <p th:if="${#fields.hasErrors('title')}"
+               class="text-danger"
+               th:errors="*{title}"
+            ></p>
+          </div>
+          <div class="mb-3">
+            <label for="shortDesc" class="form-label">Short Description</label>
+            <textarea type="text"
+                      class="form-control"
+                      id="shortDesc"
+                      placeholder="Short Description..."
+                      name="shortDesc"
+                      th:field="*{shortDesc}"
+            >
+                        </textarea>
+            <p th:if="${#fields.hasErrors('shortDesc')}"
+               class="text-danger"
+               th:errors="*{shortDesc}"
+            ></p>
+          </div>
+          <div class="mb-3">
+            <label for="content" class="form-label">Content</label>
+            <textarea type="text"
+                      class="form-control"
+                      id="content"
+                      placeholder="Content..."
+                      name="content"
+                      th:field="*{content}"
+            >
+                        </textarea>
+            <p th:if="${#fields.hasErrors('content')}"
+               class="text-danger"
+               th:errors="*{content}"
+            ></p>
+          </div>
+          <button type="submit" class="btn btn-primary">submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+        crossorigin="anonymous"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/35.3.1/classic/ckeditor.js"></script>
+<script>
+  ClassicEditor
+          .create(document.querySelector('#content'))
+          .then(editor => {
+            console.log(editor);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+</script>
+<div th:replace="admin/footer"></div>
