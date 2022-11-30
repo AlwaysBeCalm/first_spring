@@ -34,6 +34,8 @@ th:replace (or insert) = "html template path :: fragment name" will get the
             <td>
                 <a th:href="@{/admin/posts/{postId}/edit(postId=${post.id})}"
                    class="btn btn-primary">Edit</a>
+                <a th:href="@{/admin/posts/{postId}/delete(postId=${post.id})}"
+                   class="btn btn-danger">Delete</a>
             </td> <!--here will be the actions edit/delete buttons-->
         </tr>
         </tbody>
