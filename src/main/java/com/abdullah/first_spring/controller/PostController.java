@@ -77,6 +77,12 @@ public class PostController {
         return "redirect:/admin/posts";
     }
 
+    @GetMapping("/admin/posts/{postId}/delete")
+    public String deletePost(@PathVariable Long postId) {
+        postService.deletePost(postId);
+        return "redirect:/admin/posts";
+    }
+
     private static String getUrl(String postTitle) {
         // e.g. post title is: Post About Java
         // then the post url will be /posts/post-about-java
